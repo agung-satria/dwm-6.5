@@ -127,7 +127,7 @@ static const char *termcmd[]  = { "st", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,			                  XK_p,		   spawn,          {.v = (const char*[]){ "dmenu_run", NULL } } },
 	{ MODKEY,				                XK_a,      spawn,          {.v = (const char*[]){ "rofi-dashboard", NULL } } },
 	{ MODKEY,			                  XK_d,		   spawn,          {.v = (const char*[]){ "rofi-run", NULL } } },
 	{ MODKEY,			                  XK_r,		   spawn,          {.v = (const char*[]){ "rofi-drun", NULL } } },
