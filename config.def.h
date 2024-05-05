@@ -69,13 +69,21 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class        instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",	      NULL,			  NULL,		    0,				          1,			 -1 },
-	{ "Firefox",    NULL,			  NULL,		    1 << 8,			        0,			 -1 },
-	{ TERMCLASS,	  "spterm",	  NULL,		    SPTAG(0),		        1,			 -1 },
-	{ TERMCLASS,	  "spfm",		  NULL,		    SPTAG(1),		        1,			 -1 },
-	{ TERMCLASS,	  "spmus",    NULL,		    SPTAG(2),		        1,			 -1 },
-	{ "Galculator",	"galculator",NULL,      SPTAG(3),		        1,			 -1 },
-	{ "crow-translate","AppRun.wrapped",    NULL,SPTAG(4),      1,		   -1 },
+  { "float-st",	    NULL,			  NULL,		  0,           1,			    -1 },
+  { "File-roller",	NULL,			  NULL,		  0,           1,			    -1 },
+  { "SimpleScreenRecorder",NULL,NULL,		  0,           1,			    -1 },
+  { "xdman-Main",   NULL,			  NULL,		  0,           1,			    -1 },
+  { "zenity",       NULL,			  NULL,		  0,           1,			    -1 },
+  { "firefox",      NULL,			  NULL,		  1 << 1,	 	   0,			    -1 },
+  { "TelegramDesktop",NULL,	    NULL,		  1 << 3,	 	   0,			    -1 },
+  { "Gimp",	        NULL,			  NULL,		  1 << 5,      0,			    -1 },
+  { "Inkscape",	    NULL,			  NULL,		  1 << 6,      0,			    -1 },
+  { "obs",	        NULL,			  NULL,		  1 << 7,      0,			    -1 },
+  { TERMCLASS,	    "spterm",		NULL,		  SPTAG(0),	   1,			    -1 },
+  { TERMCLASS,	    "spfm",		  NULL,		  SPTAG(1),	   1,			    -1 },
+  { TERMCLASS,	    "spmus",		NULL,		  SPTAG(2),	   1,			    -1 },
+  { "Galculator",   "galculator",NULL,    SPTAG(3),	   1,			    -1 },
+  { "crow-translate","AppRun.wrapped",NULL,SPTAG(4),   1,			    -1 },
 };
 
 /* layout(s) */
