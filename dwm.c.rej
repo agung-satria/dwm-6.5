@@ -1,13 +1,16 @@
 --- dwm.c
 +++ dwm.c
-@@ -1061,6 +1062,10 @@ manage(Window w, XWindowAttributes *wa)
- 	updatewindowtype(c);
- 	updatesizehints(c);
- 	updatewmhints(c);
-+	c->sfx = c->x;
-+	c->sfy = c->y;
-+	c->sfw = c->w;
-+	c->sfh = c->h;
- 	XSelectInput(dpy, w, EnterWindowMask|FocusChangeMask|PropertyChangeMask|StructureNotifyMask);
- 	grabbuttons(c, 0);
- 	if (!c->isfloating)
+@@ -187,10 +190,13 @@ static void maprequest(XEvent *e);
+ static void monocle(Monitor *m);
+ static void motionnotify(XEvent *e);
+ static void movemouse(const Arg *arg);
++static void moveorplace(const Arg *arg);
+ static Client *nexttiled(Client *c);
++static void placemouse(const Arg *arg);
+ static void pop(Client *);
+ static void propertynotify(XEvent *e);
+ static void quit(const Arg *arg);
++static Client *recttoclient(int x, int y, int w, int h);
+ static Monitor *recttomon(int x, int y, int w, int h);
+ static void resize(Client *c, int x, int y, int w, int h, int interact);
+ static void resizeclient(Client *c, int x, int y, int w, int h);
