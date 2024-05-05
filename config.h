@@ -5,6 +5,15 @@
 #define TERMCLASS "St"
 #define TERMINALT "wezterm"
 
+/* alt-tab configuration */
+static const unsigned int tabModKey 		= 0x40;	/* if this key is hold the alt-tab functionality stays acitve. This key must be the same as key that is used to active functin altTabStart `*/
+static const unsigned int tabCycleKey 		= 0x17;	/* if this key is hit the alt-tab program moves one position forward in clients stack. This key must be the same as key that is used to active functin altTabStart */
+static const unsigned int tabCycleKey2 		= 0x31;	/* grave key */
+static const unsigned int tabPosY 			= 1;	/* tab position on Y axis, 0 = bottom, 1 = center, 2 = top */
+static const unsigned int tabPosX 			= 1;	/* tab position on X axis, 0 = left, 1 = center, 2 = right */
+static const unsigned int maxWTab 			= 600;	/* tab menu width */
+static const unsigned int maxHTab 			= 200;	/* tab menu height */
+
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -163,6 +172,8 @@ static const Key keys[] = {
 	{ MODKEY,            			      XK_m,	     togglescratch,  {.ui = 2 } },
   { MODKEY,                       XK_apostrophe,togglescratch,{.ui = 3 } },
   { MODKEY,                       XK_slash,  togglescratch,  {.ui = 4 } },
+	{ ALTKEY,             		      XK_Tab,    altTabStart,	   {.i = 1} },
+	{ ALTKEY|ShiftMask,             XK_Tab,    altTabStart,	   {.i = 0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
