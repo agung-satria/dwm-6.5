@@ -1,30 +1,27 @@
---- dwm.c
-+++ dwm.c
-@@ -440,10 +440,8 @@ buttonpress(XEvent *e)
- 			arg.ui = 1 << i;
- 		} else if (ev->x < x + blw)
- 			click = ClkLtSymbol;
--		else if (ev->x > selmon->ww - (int)TEXTW(stext))
--			click = ClkStatusText;
- 		else
--			click = ClkWinTitle;
-+			click = ClkStatusText;
- 	} else if ((c = wintoclient(ev->window))) {
- 		focus(c);
- 		restack(selmon);
-@@ -730,15 +728,8 @@ drawbar(Monitor *m)
- 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+--- dwm.c	2020-05-12 02:17:20.070933833 +0200
++++ dwm.c	2020-05-14 00:17:35.047919771 +0200
+@@ -119,6 +119,7 @@ struct Monitor {
+ 	int by;               /* bar geometry */
+ 	int mx, my, mw, mh;   /* screen size */
+ 	int wx, wy, ww, wh;   /* window area  */
++	unsigned int borderpx;
+ 	unsigned int seltags;
+ 	unsigned int sellt;
+ 	unsigned int tagset[2];
+@@ -639,6 +641,7 @@ createmon(void)
+ 	m->nmaster = nmaster;
+ 	m->showbar = showbar;
+ 	m->topbar = topbar;
++	m->borderpx = borderpx;
+ 	m->lt[0] = &layouts[0];
+ 	m->lt[1] = &layouts[1 % LENGTH(layouts)];
+ 	strncpy(m->ltsymbol, layouts[0].symbol, sizeof m->ltsymbol);
+@@ -1048,7 +1051,7 @@ manage(Window w, XWindowAttributes *wa)
+ 	/* only fix client y-offset, if the client center might cover the bar */
+ 	c->y = MAX(c->y, ((c->mon->by == c->mon->my) && (c->x + (c->w / 2) >= c->mon->wx)
+ 		&& (c->x + (c->w / 2) < c->mon->wx + c->mon->ww)) ? bh : c->mon->my);
+-	c->bw = borderpx;
++	c->bw = c->mon->borderpx;
  
- 	if ((w = m->ww - tw - x) > bh) {
--		if (m->sel) {
--			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
--			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
--			if (m->sel->isfloating)
--				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
--		} else {
- 			drw_setscheme(drw, scheme[SchemeNorm]);
- 			drw_rect(drw, x, 0, w, bh, 1, 1);
--		}
- 	}
- 	drw_map(drw, m->barwin, 0, 0, m->ww, bh);
- }
+ 	wc.border_width = c->bw;
+ 	XConfigureWindow(dpy, w, CWBorderWidth, &wc);

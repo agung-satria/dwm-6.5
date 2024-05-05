@@ -15,8 +15,8 @@ static const unsigned int maxWTab 			= 600;	/* tab menu width */
 static const unsigned int maxHTab 			= 200;	/* tab menu height */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int snap      = 2;        /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 1;    /* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -37,7 +37,7 @@ static const char normfgcolor[]       = "#abaeb5";
 static const char selfgcolor[]        = "#c7c9d0";
 static const char selbordercolor[]    = "#666a7c";
 static const char selbgcolor[]        = "#3c3f43";
-static const char *colors[][3]      = {
+static const char *colors[][3]        = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
 	[SchemeSel]  = { selfgcolor, selbgcolor,  selbordercolor },
@@ -214,6 +214,9 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+  { MODKEY|ControlMask,           XK_minus,  setborderpx,    {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_equal,  setborderpx,    {.i = +1 } },
+	{ MODKEY|ControlMask,           XK_0,      setborderpx,    {.i = 0 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
   { MODKEY|ShiftMask,            	XK_Return, togglescratch,  {.ui = 0 } },
